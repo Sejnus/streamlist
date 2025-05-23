@@ -1,21 +1,23 @@
-// src/components/Subscriptions.jsx
 import React from 'react';
 import products from '../Data';
+import '../styles.css'; // This makes sure your CSS is loaded!
 
 function Subscriptions({ addToCart }) {
   return (
-    <div>
+    <div className="subscriptions-container">
       <h2>Available Subscriptions and Accessories</h2>
-      <ul>
+      <div className="product-grid">
         {products.map(product => (
-          <li key={product.id}>
-            {product.name} - ${product.price.toFixed(2)}
+          <div className="product-card" key={product.id}>
+            <img src={product.image} alt={product.name} className="product-image" />
+            <h3>{product.name}</h3>
+            <p>${product.price.toFixed(2)}</p>
             <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
 
-export default Subscriptions; 
+export default Subscriptions;
