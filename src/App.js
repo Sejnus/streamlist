@@ -8,7 +8,7 @@ import StreamList from './components/StreamList';
 import Movies from './components/Movies';
 import Cart from './components/Cart';
 import About from './components/About';
-import Subscriptions from './components/Subscriptions'; // NEW
+import Subscriptions from './components/Subscriptions';
 
 function App() {
   const [cart, setCart] = useState(() => {
@@ -41,7 +41,13 @@ function App() {
   };
 
   const updateQuantity = (id, amount) => {
-    setCart(cart.map(p => p.id === id ? { ...p, quantity: amount } : p));
+    setCart(cart.map(item => {
+      if (item.id === id) {
+        if (item.type === 'subscription') amount = 1; // lock quantity
+        return { ...item, quantity: amount };
+      }
+      return item;
+    }));
   };
 
   return (
