@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { 
   FaTrash, 
@@ -68,8 +69,9 @@ function StreamList() {
           value={input}
           onChange={e => setInput(e.target.value)}
         />
-        <button type="submit">➕</button>
-      </form>
+<button type="submit">
+  <span role="img" aria-label="Add">➕</span>
+</button>      </form>
 
       <ul className="task-list">
         {tasks.map(task => (
